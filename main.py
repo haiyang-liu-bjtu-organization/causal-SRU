@@ -12,13 +12,15 @@ import matplotlib
 import sys
 import numpy as np
 import pylab
-from matplotlib import pyplot as plt 
+from matplotlib import pyplot as plt
 import time
 import sys
+
+from models.esru_1LF import eSRU_1LF, train_eSRU_1LF
+from models.esru_2LF import eSRU_2LF, train_eSRU_2LF
 from models.sru import SRU, trainSRU
-from models.eSRU_1LF import eSRU_1LF, train_eSRU_1LF
-from models.eSRU_2LF import eSRU_2LF, train_eSRU_2LF
-from utils.utilFuncs import env_config, loadTrainingData, loadTrueNetwork, getCausalNodes, count_parameters, getGeneTrainingData  
+
+from utils.utilFuncs import env_config, loadTrainingData, loadTrueNetwork, getCausalNodes, count_parameters, getGeneTrainingData
 
 
 # Read input command line arguments
@@ -33,7 +35,7 @@ parser.add_argument('--T', type=int, default=10,
                      help='training size, default: 10')
 parser.add_argument('--F', type=int, default=10,
                      help='chaos, default: 10')
-parser.add_argument('--n', type=int, default=10,
+parser.add_argument('--sruname', type=int, default=10,
                      help='num of timeseries, default: 10')
 parser.add_argument('--model', type=str, default='sru',
                      help='[sru, gru, lstm]: select your model')
@@ -62,7 +64,7 @@ dataset    = args.dataset
 dataset_id = args.dsid
 T          = args.T
 F          = args.F
-n          = args.n
+n          = args.sruname
 lr         = args.lr
 jobLogFilename     = args.joblog
 
