@@ -97,22 +97,23 @@ if (dataset == 'gene'):
 elif (dataset == 'var'):
     # fileName = "data/var/S_%s_T_%s_dataset_%s.npz" % (F, T, dataset_id)
     ld = np.load(fileName)
-    X_np = ld['X_np']
-    Gref = ld['Gref']
+    X_np = ld['X']
+    X_np = X_np.T  # 咱们的数据是(200,10)这种形式，然后咱们要转置成(10,200)
+    Gref = ld['GC']
     numTotalSamples = T
     Xtrain = torch.from_numpy(X_np)
     Xtrain = Xtrain.float().to(device)
     inputSignalMultiplier = 1
     Xtrain = inputSignalMultiplier * Xtrain
+    print(Xtrain)
+    print("shape:", Xtrain.shape)
 
 elif (dataset == 'lorenz'):
     # fileName = "data/lorenz96/F_%s_T_%s_dataset_%s.npz" % (F, T, dataset_id)
     # fileName = input
     ld = np.load(fileName)
-    # X_np = ld['X_np']
     X_np = ld['X']
     X_np = X_np.T  # 咱们的数据是(200,10)这种形式，然后咱们要转置成(10,200)
-    # Gref = ld['Gref']
     Gref = ld['GC']
     numTotalSamples = T
     Xtrain = torch.from_numpy(X_np)
@@ -182,7 +183,7 @@ if (model_name == 'sru'):
         dim_rec_stats = 10  # math.ceil(n) #1.5n
         dim_final_stats = 10  # d * len(A) #math.ceil(n/2) #n
         dim_rec_stats_feedback = 10  # d * len(A) #math.ceil(n/2) #n
-        batchSize = 250
+        batchSize = T
         blk_size = int(batchSize / 2)
         numBatches = int(numTotalSamples / batchSize)
 
@@ -196,7 +197,7 @@ if (model_name == 'sru'):
         # batchSize = 250
         # batchSize = 200
         # batchSize = 500
-        batchSize = 1000
+        batchSize = T
         blk_size = int(batchSize / 2)
         numBatches = int(numTotalSamples / batchSize)
 

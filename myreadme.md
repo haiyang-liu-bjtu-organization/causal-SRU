@@ -9,7 +9,7 @@ pip install matplotlib==3.0.0
 
 pip install numpy==1.16.4 scipy==1.2.1
 
-
+妈的，最后用的还是cpu，GPU的环境配不好，对CUDA有要求好像。
 
 
 # 修改
@@ -18,11 +18,33 @@ pip install numpy==1.16.4 scipy==1.2.1
 主要是因为conda在运行命令的时候也有一个参数叫-n会产生歧义
 
 
-sru.py
+**`sru.py`**
 改了一句
 ```python
 stop_time = min(start_time + blk_size - 1, numTotalSamples - 1)
 ```
+
+`main2.py`
+是我们的主函数
+```python
+    elif (dataset == 'lorenz'):
+        A = [0.0, 0.01, 0.1, 0.99];
+        dim_iid_stats = 10
+        dim_rec_stats = 10
+        dim_final_stats = 10
+        dim_rec_stats_feedback = 10
+        # batchSize = 250
+        # batchSize = 200
+        # batchSize = 500
+        batchSize = 1000
+        blk_size = int(batchSize / 2)
+        numBatches = int(numTotalSamples / batchSize)
+```
+这个地方的barchsize也要改掉。
+
+
+
+
 # 目录说明
 SRU_for_GCI/    
 │
