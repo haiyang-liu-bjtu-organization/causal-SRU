@@ -264,8 +264,8 @@ def train_eSRU_2LF(model, trainingData, device, numBatches, batchSize, blk_size,
                       + mseLoss(model.lin_r2.bias, lin_r2_bias)).data
 
 
-        if(printEpoch == 1):
-            print('Predicted Node = %d \t epoch = %s \t lr = %.4f \t Training loss = %.4f \t Fit error = %.4f \t Delta = %f' % (predictedIdx, epoch, optimizer.param_groups[0]['lr'], trainingLoss, fitErr, paramDelta))
+        # if(printEpoch == 1):
+        #     print('Predicted Node = %d \t epoch = %s \t lr = %.4f \t Training loss = %.4f \t Fit error = %.4f \t Delta = %f' % (predictedIdx, epoch, optimizer.param_groups[0]['lr'], trainingLoss, fitErr, paramDelta))
 
             #for col in range(n):
             #    estWeights.data[col] = torch.norm(model.lin_xr2phi.weight.data[:,col], 2) 

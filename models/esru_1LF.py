@@ -257,8 +257,8 @@ def train_eSRU_1LF(model, trainingData, device, numBatches, batchSize, blk_size,
                       + mseLoss(model.lin_r1.bias, lin_r1_bias)).data
 
 
-        if(printEpoch == 1):
-            print('Predicted Node = %d \t epoch = %s \t lr = %.4f \t Training loss = %.4f \t Fit error = %.4f \t Delta = %f' % (predictedIdx, epoch, optimizer.param_groups[0]['lr'], trainingLoss, fitErr, paramDelta))
+        # if(printEpoch == 1):
+        #     print('Predicted Node = %d \t epoch = %s \t lr = %.4f \t Training loss = %.4f \t Fit error = %.4f \t Delta = %f' % (predictedIdx, epoch, optimizer.param_groups[0]['lr'], trainingLoss, fitErr, paramDelta))
 
             #for col in range(n):
             #    estWeights.data[col] = torch.norm(model.lin_xr2phi.weight.data[:,col], 2) 
@@ -283,8 +283,8 @@ def train_eSRU_1LF(model, trainingData, device, numBatches, batchSize, blk_size,
             stoppingCntr = 0    
         
         # run your code
-        if(printEpoch == 1):
-            print("Elapsed time (1) = % s seconds" % (time.time() - start1))              
+        # if(printEpoch == 1):
+            # print("Elapsed time (1) = % s seconds" % (time.time() - start1))
 
     return model, lossVec
 

@@ -17,6 +17,12 @@ pip install numpy==1.16.4 scipy==1.2.1
 
 主要是因为conda在运行命令的时候也有一个参数叫-n会产生歧义
 
+
+sru.py
+改了一句
+```python
+stop_time = min(start_time + blk_size - 1, numTotalSamples - 1)
+```
 # 目录说明
 SRU_for_GCI/    
 │
